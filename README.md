@@ -17,7 +17,7 @@ The official implementation of "TFormer: A throughout fusion transformer for mul
 Please at first download datasets [Derm7pt](https://derm.cs.sfu.ca/Download.html) and then download the pretrained model of swin-tiny on ImageNet-1k from [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth). Save the model into the folder "./models/swin_transformer".
 
 ## Run Details
-To train oue `TFormer`, run:
+To train our `TFormer`, run:
 ```
 python train.py --dir_release "your dataset path" --epochs 100 --batch_size 32 --learning_rate 1e-4 --cuda True
 ```
