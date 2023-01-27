@@ -27,6 +27,6 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ## Acknowledgement
 Our code borrows a lot from:
--[Swin-Transformer](https://github.com/microsoft/Swin-Transformer)
--[Derm7pt](https://github.com/jeremykawahara/derm7pt)
+- [Swin-Transformer](https://github.com/microsoft/Swin-Transformer)
+- [Derm7pt](https://github.com/jeremykawahara/derm7pt)
 
