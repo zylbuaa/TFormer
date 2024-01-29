@@ -9,8 +9,8 @@ The official implementation of "TFormer: A throughout fusion transformer for mul
 
 ## Enviroments
 - Windows/Linux both support
-- python 3.8
-- PyTorch 1.9.0
+- python 3.9
+- PyTorch 1.12.1
 - torchvision
 
 ## Prepare dataset

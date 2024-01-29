@@ -32,7 +32,11 @@ def main(options):
     # parse the input args
     epochs = options['epochs']
     modal_path = options['modal_path']
+    if not os.path.exists(modal_path):
+        os.makedirs(modal_path)
     log_path = options['log_path']
+    if not os.path.exists(log_path):
+        os.makedirs(log_path)
     label_t = options['labels']
     class_num = options['class_num']
     patience = options['patience']
@@ -210,14 +214,14 @@ def main(options):
 
                 total_correct_results_num += predicted_result.cpu().eq(diagnosis_label.cpu()).sum()
 
-                val_confusion_diag.update(int(predicted_result.cpu().numpy()),diagnosis_label.cpu().numpy())
-                val_confusion_pn.update(int(predictions_pn.cpu().numpy()), pn_label.cpu().numpy())
-                val_confusion_bmv.update(int(predictions_bmv.cpu().numpy()), bmv_label.cpu().numpy())
-                val_confusion_vs.update(int(predictions_vs.cpu().numpy()), vs_label.cpu().numpy())
-                val_confusion_pig.update(int(predictions_pig.cpu().numpy()), pig_label.cpu().numpy())
-                val_confusion_str.update(int(predictions_str.cpu().numpy()), str_label.cpu().numpy())
-                val_confusion_dag.update(int(predictions_dag.cpu().numpy()), dag_label.cpu().numpy())
-                val_confusion_rs.update(int(predictions_rs.cpu().numpy()), rs_label.cpu().numpy())
+                val_confusion_diag.update(predicted_result.cpu().numpy(),diagnosis_label.cpu().numpy())
+                val_confusion_pn.update(predictions_pn.cpu().numpy(), pn_label.cpu().numpy())
+                val_confusion_bmv.update(predictions_bmv.cpu().numpy(), bmv_label.cpu().numpy())
+                val_confusion_vs.update(predictions_vs.cpu().numpy(), vs_label.cpu().numpy())
+                val_confusion_pig.update(predictions_pig.cpu().numpy(), pig_label.cpu().numpy())
+                val_confusion_str.update(predictions_str.cpu().numpy(), str_label.cpu().numpy())
+                val_confusion_dag.update(predictions_dag.cpu().numpy(), dag_label.cpu().numpy())
+                val_confusion_rs.update(predictions_rs.cpu().numpy(), rs_label.cpu().numpy())
 
             if np.isnan(avg_valid_loss):
                 print("Training got into NaN values...\n\n")
@@ -316,14 +320,14 @@ def main(options):
                 ret, predictions_dag = torch.max(output[6].data, 1)
                 ret, predictions_rs = torch.max(output[7].data, 1)
 
-                confusion_diag.update(int(predictions_diag.cpu().numpy()),diagnosis_label.cpu().numpy())
-                confusion_pn.update(int(predictions_pn.cpu().numpy()), pn_label.cpu().numpy())
-                confusion_bmv.update(int(predictions_bmv.cpu().numpy()), bmv_label.cpu().numpy())
-                confusion_vs.update(int(predictions_vs.cpu().numpy()), vs_label.cpu().numpy())
-                confusion_pig.update(int(predictions_pig.cpu().numpy()), pig_label.cpu().numpy())
-                confusion_str.update(int(predictions_str.cpu().numpy()), str_label.cpu().numpy())
-                confusion_dag.update(int(predictions_dag.cpu().numpy()), dag_label.cpu().numpy())
-                confusion_rs.update(int(predictions_rs.cpu().numpy()), rs_label.cpu().numpy())
+                confusion_diag.update(predictions_diag.cpu().numpy(),diagnosis_label.cpu().numpy())
+                confusion_pn.update(predictions_pn.cpu().numpy(), pn_label.cpu().numpy())
+                confusion_bmv.update(predictions_bmv.cpu().numpy(), bmv_label.cpu().numpy())
+                confusion_vs.update(predictions_vs.cpu().numpy(), vs_label.cpu().numpy())
+                confusion_pig.update(predictions_pig.cpu().numpy(), pig_label.cpu().numpy())
+                confusion_str.update(predictions_str.cpu().numpy(), str_label.cpu().numpy())
+                confusion_dag.update(predictions_dag.cpu().numpy(), dag_label.cpu().numpy())
+                confusion_rs.update(predictions_rs.cpu().numpy(), rs_label.cpu().numpy())
 
 
             print("Daig:\n")
@@ -392,7 +396,7 @@ OPTIONS.add_argument('--pretrained', dest='pretrained', type=bool, default=True)
 PARAMS = vars(OPTIONS.parse_args())
 
 if __name__ == "__main__":
-    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     args = OPTIONS.parse_args()
     PARAMS = vars(OPTIONS.parse_args())
     main(PARAMS)

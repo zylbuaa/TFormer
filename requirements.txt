@@ -1,0 +1,13 @@
+apex==0.1
+matplotlib==3.5.1
+numpy==1.21.1
+opencv-python==4.5.4.60
+opencv-python-headless==4.5.5.64
+pandas==1.4.1
+Pillow==9.5.0
+prettytable==3.1.1
+scikit-learn==1.2.2
+torch==1.12.1+cu113
+torchvision==0.13.1+cu113
+timm==0.5.4
+PyYAML==6.0
